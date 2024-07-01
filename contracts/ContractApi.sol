@@ -43,4 +43,17 @@ contract ContractApi {
         return productArray;
     }
 
+    function deleteProduct(uint256 _id) public onlyOwner {
+        require(products[_id].id !=0 , "Product is not available");
+        delete products[_id];
+        for (uint i = 0; i < productArray.length; i++) {
+            if (productArray[i].id == _id) {
+                removeMe = productArray[i];
+                productArray[i] = productArray[productArray.length-1];
+                productArray[productArray.length - 1] = removeMe;
+            }
+        }
+        productArray.pop();
+    }
+
 }
