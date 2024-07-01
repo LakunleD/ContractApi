@@ -39,4 +39,8 @@ contract ContractApi {
         return (product.name, product.price, product.quantity);
     }
 
+    function getAllProducts() public view returns (Product[] memory){
+        return productArray;
+    }
+
 }
