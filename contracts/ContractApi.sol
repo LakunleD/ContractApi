@@ -33,4 +33,10 @@ contract ContractApi {
         productArray.push(Product(_id, _name, _price, _quantity));
     }
 
+    function getProduct (uint256 _id) public view returns (string memory, uint256, uint256) {
+        require(products[_id].id !=0 , "Product is not available");
+        Product memory product = products[_id];
+        return (product.name, product.price, product.quantity);
+    }
+
 }
