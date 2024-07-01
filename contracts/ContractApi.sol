@@ -45,7 +45,7 @@ contract ContractApi {
 
     function deleteProduct(uint256 _id) public onlyOwner {
         require(products[_id].id !=0 , "Product is not available");
-        delete products[_id];
+         products[_id];
         for (uint i = 0; i < productArray.length; i++) {
             if (productArray[i].id == _id) {
                 removeMe = productArray[i];
@@ -54,6 +54,13 @@ contract ContractApi {
             }
         }
         productArray.pop();
+    }
+
+    function updateProduct(uint256 _id, string memory _name, uint256 _price, uint256 _quantity) public onlyOwner {
+        require(products[_id].id !=0 , "Product is not available");
+        deleteProduct(_id);
+        products[_id] = Product(_id, _name, _price, _quantity);
+        productArray.push(Product(_id, _name, _price, _quantity));
     }
 
 }
